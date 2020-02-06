@@ -69,6 +69,7 @@ public class MpGenerator {
         mpg.setStrategy(strategy);
 
         // 包配置
+        // 包配置
         PackageConfig pc = new PackageConfig();
         pc.setParent("com.ds");
         pc.setController("controller");
