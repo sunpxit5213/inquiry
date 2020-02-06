@@ -27,7 +27,7 @@ public class MpGenerator {
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
         //输出文件路径
-        gc.setOutputDir("F:\\mySpringBoot\\fatherSpringBoot\\EML\\src\\main\\java");
+        gc.setOutputDir("D:\\RMEE\\inquiry\\src\\main\\java");
         gc.setFileOverride(true);
         // 不需要ActiveRecord特性的请改为false
         gc.setActiveRecord(false);
