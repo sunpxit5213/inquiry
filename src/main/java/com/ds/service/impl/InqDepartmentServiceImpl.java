@@ -1,8 +1,8 @@
 package com.ds.service.impl;
 
-import com.ds.model.ImqDepartment;
-import com.ds.dao.ImqDepartmentMapper;
-import com.ds.service.ImqDepartmentService;
+import com.ds.model.InqDepartment;
+import com.ds.dao.InqDepartmentMapper;
+import com.ds.service.InqDepartmentService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2020-02-07
  */
 @Service
-public class ImqDepartmentServiceImpl extends ServiceImpl<ImqDepartmentMapper, ImqDepartment> implements ImqDepartmentService {
+public class InqDepartmentServiceImpl extends ServiceImpl<InqDepartmentMapper, InqDepartment> implements InqDepartmentService {
 
 }

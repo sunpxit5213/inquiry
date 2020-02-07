@@ -14,8 +14,8 @@ import org.springframework.stereotype.Controller;
  * @since 2020-02-07
  */
 @Controller
-@RequestMapping("/imqDepartment")
-public class ImqDepartmentController {
+@RequestMapping("/inqDepartment")
+public class InqDepartmentController {
 
 }
 

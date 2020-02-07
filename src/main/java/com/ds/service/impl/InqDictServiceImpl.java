@@ -1,8 +1,8 @@
 package com.ds.service.impl;
 
-import com.ds.model.ImqDict;
-import com.ds.dao.ImqDictMapper;
-import com.ds.service.ImqDictService;
+import com.ds.model.InqDict;
+import com.ds.dao.InqDictMapper;
+import com.ds.service.InqDictService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2020-02-07
  */
 @Service
-public class ImqDictServiceImpl extends ServiceImpl<ImqDictMapper, ImqDict> implements ImqDictService {
+public class InqDictServiceImpl extends ServiceImpl<InqDictMapper, InqDict> implements InqDictService {
 
 }

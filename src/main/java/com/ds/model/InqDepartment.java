@@ -12,7 +12,7 @@ import java.io.Serializable;
  * @author dps
  * @since 2020-02-07
  */
-public class ImqDepartment implements Serializable {
+public class InqDepartment implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -59,7 +59,7 @@ public class ImqDepartment implements Serializable {
 
     @Override
     public String toString() {
-        return "ImqDepartment{" +
+        return "InqDepartment{" +
         "id=" + id +
         ", depName=" + depName +
         ", depType=" + depType +

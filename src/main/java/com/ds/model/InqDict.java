@@ -10,7 +10,7 @@ import java.io.Serializable;
  * @author dps
  * @since 2020-02-07
  */
-public class ImqDict implements Serializable {
+public class InqDict implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -82,7 +82,7 @@ public class ImqDict implements Serializable {
 
     @Override
     public String toString() {
-        return "ImqDict{" +
+        return "InqDict{" +
         "id=" + id +
         ", dictName=" + dictName +
         ", dictType=" + dictType +
