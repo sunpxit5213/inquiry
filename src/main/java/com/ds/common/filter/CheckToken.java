@@ -24,12 +24,11 @@ import java.util.Arrays;
  * @params : null
  * @return :
  */
-
 @Slf4j
 @Component
 @WebFilter(value = "/*")
 public class CheckToken implements Filter {
-    String[] path={"/login/main","/login/save"};
+    String[] path = {"/login/main", "/login/save"};
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
@@ -41,30 +40,39 @@ public class CheckToken implements Filter {
         String token = req.getHeader("token");
 
         String pathTranslated = req.getRequestURI();
-        if (!Arrays.asList(path).contains(pathTranslated)){
+        //判断是否需要认证
+        if (!Arrays.asList(path).contains(pathTranslated)) {
 
 
-
+            //判断是否传递签名
             if (token != null) {
                 log.info("auth success");
 
+                //认证
                 if (SignUtil.isToken(token)) {
-                    SignUtil.setCookie(response,"token");
+                    //更新签名
+                    SignUtil.setCookie(response, "token");
                     filterChain.doFilter(req, response);
-                }else {
+                } else {
                     erreAll(servletResponse);
                 }
 
             } else {
                 erreAll(servletResponse);
             }
-        }else {
+        } else {
             filterChain.doFilter(req, response);
         }
 
     }
 
-
+    /**
+     * @return : void
+     * @author : sunpx
+     * @desc : 验证失败后响应
+     * @date : 2020/02/07 23:53:25
+     * @params : servletResponse
+     */
     private void erreAll(ServletResponse servletResponse) throws IOException {
         servletResponse.setCharacterEncoding("UTF-8");
         servletResponse.setContentType("application/json; charset=utf-8");

@@ -47,7 +47,10 @@ public class loginController {
             String reqPassword = inqUser.getPassword();
 
 
+            //将用户输入密码与盐一起加密
             String digestHex = md5.digestHex(userSalt + reqPassword);
+
+            //判断密码是否正确
             if (one.getPassword().equals(digestHex)) {
                 SignUtil.setCookie(response, "token");
                 return new ResultData("ok");
@@ -69,13 +72,15 @@ public class loginController {
         String UUID = SecureUtil.simpleUUID();
         //用户输入密码
         String password = inqUser.getPassword();
-
+        //保存加密盐
         inqUser.setUserSalt(UUID);
+        // 将密码和加密盐一起加密保存在密码里
         inqUser.setPassword(md5.digestHex(UUID + password));
 
 
         boolean save = inqUserService.save(inqUser);
         if (save){
+            //更新签名
             SignUtil.setCookie(response, "token");
         }
         return new ResultData("登录成功");
