@@ -7,6 +7,8 @@ import cn.hutool.crypto.CryptoException;
 import cn.hutool.crypto.asymmetric.KeyType;
 import cn.hutool.crypto.asymmetric.RSA;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 
 /**
@@ -19,42 +21,70 @@ public class SignUtil {
 
 
     /**
-    * @author  : sunpx
-    * @desc    : 生成签名
-    * @date    : 2020/02/07 19:10:05
-    * @params  :
-    * @return  : java.lang.String
-    */
+     * @return : java.lang.String
+     * @author : sunpx
+     * @desc : 生成签名
+     * @date : 2020/02/07 19:10:05
+     * @params :
+     */
 
-   public static String getToken(){
-       RSA rsa = new RSA(TokenKey.getPrivateKey(), TokenKey.getPublicKey());
-       String now = DateUtil.now();
-       String sign = rsa.encryptStr(now, KeyType.PublicKey);
-       return sign;
-   }
+    public static String getToken() {
+        RSA rsa = new RSA(TokenKey.getPrivateKey(), TokenKey.getPublicKey());
+        String now = DateUtil.now();
+        String sign = rsa.encryptStr(now, KeyType.PublicKey);
+        return sign;
+    }
 
 
-   /**
-   * @author  : sunpx
-   * @desc    : 验证签名
-   * @date    : 2020/02/07 22:04:22
-   * @params  : data
-   * @return  : boolean
-   */
-    public static boolean isToken(String data){
-       try {
-           RSA rsa = new RSA(TokenKey.getPrivateKey(), TokenKey.getPublicKey());
-           byte[] aByte = HexUtil.decodeHex(data);
-           byte[] decrypt = rsa.decrypt(aByte, KeyType.PrivateKey);
-           Date date1 = DateUtil.parse( DateUtil.now());
+    /**
+     * @return : boolean
+     * @author : sunpx
+     * @desc : 验证签名
+     * @date : 2020/02/07 22:04:22
+     * @params : data
+     */
+    public static boolean isToken(String data) {
+        try {
+            RSA rsa = new RSA(TokenKey.getPrivateKey(), TokenKey.getPublicKey());
+            byte[] aByte = HexUtil.decodeHex(data);
+            byte[] decrypt = rsa.decrypt(aByte, KeyType.PrivateKey);
+            Date date1 = DateUtil.parse(DateUtil.now());
 
-           Date date2 = DateUtil.parse(new String(decrypt));
-           if (DateUtil.between(date1, date2, DateUnit.MINUTE)<=60){
-               return true;
-           }
-           return false;
-       }catch (CryptoException e){
-           return false;
-       }
+            Date date2 = DateUtil.parse(new String(decrypt));
+            if (DateUtil.between(date1, date2, DateUnit.MINUTE) <= 60) {
+                return true;
+            }
+            return false;
+        } catch (CryptoException e) {
+            return false;
+        }
+    }
+
+    /**
+     * @return : void
+     * @author : sunpx
+     * @desc : 保存签名
+     * @date : 2020/02/07 23:14:07
+     * @params : response,cookieName
+     */
+    public static void setCookie(HttpServletResponse response, String cookieName) {
+        Cookie cookie = new Cookie(cookieName, SignUtil.getToken());
+        cookie.setPath("/");
+        cookie.setMaxAge(60 * 60);
+        response.addCookie(cookie);
+    }
+
+    /**
+     * @return : void
+     * @author : sunpx
+     * @desc : 保存cookie
+     * @date : 2020/02/07 23:14:28
+     * @params : response,cookieName,value
+     */
+    public static void setCookie(HttpServletResponse response, String cookieName, String value) {
+        Cookie cookie = new Cookie(cookieName, value);
+        cookie.setPath("/");
+        cookie.setMaxAge(60 * 60);
+        response.addCookie(cookie);
     }
 }

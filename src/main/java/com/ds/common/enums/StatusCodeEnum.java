@@ -11,8 +11,10 @@ import lombok.Getter;
 @Getter
 public enum StatusCodeEnum {
 
-    TOKEN_LAPSE(1040,"token失效"),
-    TOKEN_FAILURE(1041,"token验证失败")
+    TOKEN_LAPSE(1040,"token错误"),
+    USER_AND_PASSWORD(1051,"密码错误"),
+    USER_IS_PASSWORD(1052,"用户名错误")
+
 
 
     ;

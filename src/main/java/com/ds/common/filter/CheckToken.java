@@ -10,11 +10,11 @@ import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
 
 
 /**
@@ -29,7 +29,7 @@ import java.io.PrintWriter;
 @Component
 @WebFilter(value = "/*")
 public class CheckToken implements Filter {
-
+    String[] path={"/login/main","/login/save"};
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
@@ -39,22 +39,31 @@ public class CheckToken implements Filter {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         String token = req.getHeader("token");
-        if (token != null) {
-            log.info("auth success");
 
-            if (SignUtil.isToken(token)) {
-                Cookie cookie = new Cookie("token", SignUtil.getToken());
-                cookie.setPath("/");
-                cookie.setMaxAge(60 * 60);
-                response.addCookie(cookie);
-                filterChain.doFilter(req, response);
+        String pathTranslated = req.getRequestURI();
+        if (!Arrays.asList(path).contains(pathTranslated)){
+
+
+
+            if (token != null) {
+                log.info("auth success");
+
+                if (SignUtil.isToken(token)) {
+                    SignUtil.setCookie(response,"token");
+                    filterChain.doFilter(req, response);
+                }else {
+                    erreAll(servletResponse);
+                }
+
+            } else {
+                erreAll(servletResponse);
             }
-            erreAll(servletResponse);
-        } else {
-            erreAll(servletResponse);
+        }else {
+            filterChain.doFilter(req, response);
         }
 
     }
+
 
     private void erreAll(ServletResponse servletResponse) throws IOException {
         servletResponse.setCharacterEncoding("UTF-8");
