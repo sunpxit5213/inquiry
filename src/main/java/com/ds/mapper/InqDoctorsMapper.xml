@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ds.dao.InqDoctorsMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ds.model.InqDoctors">
+        <id column="id" property="id" />
+        <result column="doc_subject" property="docSubject" />
+        <result column="doc_user" property="docUser" />
+        <result column="doc_education" property="docEducation" />
+        <result column="doc_resume" property="docResume" />
+        <result column="doc_practise" property="docPractise" />
+        <result column="doc_status" property="docStatus" />
+    </resultMap>
+
+</mapper>

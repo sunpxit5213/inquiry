@@ -1,17 +1,16 @@
 package com.ds.service;
 
-import com.ds.model.InqUser;
+import com.ds.model.ImqDepartment;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
  * <p>
- * 医生表
- 服务类
+ * 科室表  服务类
  * </p>
  *
  * @author dps
  * @since 2020-02-07
  */
-public interface InqUserService extends IService<InqUser> {
+public interface ImqDepartmentService extends IService<ImqDepartment> {
 
 }

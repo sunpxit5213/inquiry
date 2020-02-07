@@ -8,11 +8,12 @@ import org.springframework.stereotype.Service;
 
 /**
  * <p>
- *  服务实现类
+ * 医生表
+ 服务实现类
  * </p>
  *
  * @author dps
- * @since 2020-02-06
+ * @since 2020-02-07
  */
 @Service
 public class InqUserServiceImpl extends ServiceImpl<InqUserMapper, InqUser> implements InqUserService {

@@ -1,7 +1,14 @@
 server:
-  port: 8091
+  port: 8567
 #  servlet:
 #    context-path: /sell
 spring:
   profiles:
     active: dev
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+    default-property-inclusion: non_null
+swagger:
+    docket:
+      base-package: io.github.jackson
+    enabled: true

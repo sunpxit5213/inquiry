@@ -6,11 +6,12 @@ import java.io.Serializable;
 
 /**
  * <p>
- * 
+ * 医生表
+
  * </p>
  *
  * @author dps
- * @since 2020-02-06
+ * @since 2020-02-07
  */
 public class InqUser implements Serializable {
 
@@ -41,6 +42,16 @@ public class InqUser implements Serializable {
      * 性别1.男2.女
      */
     private Integer userSex;
+
+    /**
+     * 图片地址
+     */
+    private String imgUrl;
+
+    /**
+     * 用户类型1.普通用户，2医生，3管理员
+     */
+    private Integer userType;
 
 
     public Integer getId() {
@@ -83,6 +94,22 @@ public class InqUser implements Serializable {
         this.userSex = userSex;
     }
 
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    public Integer getUserType() {
+        return userType;
+    }
+
+    public void setUserType(Integer userType) {
+        this.userType = userType;
+    }
+
     @Override
     public String toString() {
         return "InqUser{" +
@@ -91,6 +118,8 @@ public class InqUser implements Serializable {
         ", password=" + password +
         ", userSalt=" + userSalt +
         ", userSex=" + userSex +
+        ", imgUrl=" + imgUrl +
+        ", userType=" + userType +
         "}";
     }
 }
