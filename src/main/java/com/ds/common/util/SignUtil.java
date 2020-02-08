@@ -6,8 +6,10 @@ import cn.hutool.core.util.HexUtil;
 import cn.hutool.crypto.CryptoException;
 import cn.hutool.crypto.asymmetric.KeyType;
 import cn.hutool.crypto.asymmetric.RSA;
+import cn.hutool.json.JSONUtil;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 
@@ -20,6 +22,9 @@ import java.util.Date;
 public class SignUtil {
 
 
+
+
+
     /**
      * @return : java.lang.String
      * @author : sunpx
@@ -28,10 +33,10 @@ public class SignUtil {
      * @params :
      */
 
-    public static String getToken() {
+    public static String getToken(String data) {
         RSA rsa = new RSA(TokenKey.getPrivateKey(), TokenKey.getPublicKey());
         String now = DateUtil.now();
-        String sign = rsa.encryptStr(now, KeyType.PublicKey);
+        String sign = rsa.encryptStr(data+"#"+now, KeyType.PublicKey);
         return sign;
     }
 
@@ -48,9 +53,14 @@ public class SignUtil {
             RSA rsa = new RSA(TokenKey.getPrivateKey(), TokenKey.getPublicKey());
             byte[] aByte = HexUtil.decodeHex(data);
             byte[] decrypt = rsa.decrypt(aByte, KeyType.PrivateKey);
-            Date date1 = DateUtil.parse(DateUtil.now());
 
-            Date date2 = DateUtil.parse(new String(decrypt));
+            String s = new String(decrypt);
+
+            Date date1 = DateUtil.parse(DateUtil.now());
+            int i = s.lastIndexOf("#");
+
+
+            Date date2 = DateUtil.parse(s.substring(i+1));
             if (DateUtil.between(date1, date2, DateUnit.MINUTE) <= 60) {
                 return true;
             }
@@ -67,8 +77,9 @@ public class SignUtil {
      * @date : 2020/02/07 23:14:07
      * @params : response,cookieName
      */
-    public static void setCookie(HttpServletResponse response, String cookieName) {
-        Cookie cookie = new Cookie(cookieName, SignUtil.getToken());
+    public static void setCookie(HttpServletResponse response, HttpServletRequest request, String cookieName) {
+
+        Cookie cookie = new Cookie(cookieName, SignUtil.getToken(JSONUtil.parse(new UserInfo()).toJSONString(1)));
         cookie.setPath("/");
         cookie.setMaxAge(60 * 60);
         response.addCookie(cookie);
@@ -87,4 +98,7 @@ public class SignUtil {
         cookie.setMaxAge(60 * 60);
         response.addCookie(cookie);
     }
+
+
+
 }

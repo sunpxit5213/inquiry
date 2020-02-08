@@ -3,9 +3,12 @@ package com.ds.controller.special;
 import cn.hutool.crypto.SecureUtil;
 import cn.hutool.crypto.digest.DigestAlgorithm;
 import cn.hutool.crypto.digest.Digester;
+import cn.hutool.json.JSON;
+import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.ds.common.enums.StatusCodeEnum;
 import com.ds.common.util.ResultData;
+import com.ds.common.util.ServletUtil;
 import com.ds.common.util.SignUtil;
 import com.ds.model.InqUser;
 import com.ds.service.InqUserService;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * @ClassName: loginController
@@ -52,7 +56,10 @@ public class loginController {
 
             //判断密码是否正确
             if (one.getPassword().equals(digestHex)) {
-                SignUtil.setCookie(response, "token");
+                getRe(one);
+                SignUtil.setCookie(response,ServletUtil.getRequest(), "token");
+
+
                 return new ResultData("ok");
             }
             return new ResultData(StatusCodeEnum.USER_AND_PASSWORD.getCode(), StatusCodeEnum.USER_AND_PASSWORD.getMsg());
@@ -80,10 +87,18 @@ public class loginController {
 
         boolean save = inqUserService.save(inqUser);
         if (save){
+            getRe(inqUser);
             //更新签名
-            SignUtil.setCookie(response, "token");
+            SignUtil.setCookie(response,ServletUtil.getRequest(), "token");
         }
         return new ResultData("登录成功");
     }
 
+
+    public void getRe(InqUser inqUser){
+        JSON parse = JSONUtil.parse(inqUser);
+        HttpSession session = ServletUtil.getRequest().getSession();
+        session.setAttribute("userInfo",parse.toJSONString(1));
+
+    }
 }

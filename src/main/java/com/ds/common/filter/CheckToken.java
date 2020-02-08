@@ -44,14 +44,16 @@ public class CheckToken implements Filter {
         if (!Arrays.asList(path).contains(pathTranslated)) {
 
 
+
             //判断是否传递签名
             if (token != null) {
                 log.info("auth success");
 
+
                 //认证
                 if (SignUtil.isToken(token)) {
                     //更新签名
-                    SignUtil.setCookie(response, "token");
+                    SignUtil.setCookie(response,req, "token");
                     filterChain.doFilter(req, response);
                 } else {
                     erreAll(servletResponse);

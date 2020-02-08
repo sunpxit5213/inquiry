@@ -74,4 +74,18 @@ public class tset {
         byte[] decrypt = rsa.decrypt(aByte, KeyType.PrivateKey);
         System.out.println(new String(decrypt));
     }
+
+
+
+
+    @Test
+    public void test2(){
+        /*String id="{\"id\":123}";
+        InqUser inqUser = JSONUtil.toBean(id, InqUser.class);
+        System.out.println(inqUser);*/
+        String a="12345#abcdefg";
+        int i = a.lastIndexOf("#");
+        System.out.println( a .substring(i+1));
+
+    }
 }

@@ -26,7 +26,6 @@ public class InqUserController {
 
     @GetMapping("queryPage")
     public ResultData queryPage(){
-
         return new ResultData(inqUserService.list(null));
     }
 
