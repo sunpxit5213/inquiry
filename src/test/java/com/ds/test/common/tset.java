@@ -85,7 +85,7 @@ public class tset {
         System.out.println(inqUser);*/
         String a="12345#abcdefg";
         int i = a.lastIndexOf("#");
-        System.out.println( a .substring(i+1));
+        System.out.println( a .substring(0,i));
 
     }
 }

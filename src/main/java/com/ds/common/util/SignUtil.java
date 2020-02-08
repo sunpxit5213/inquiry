@@ -3,10 +3,10 @@ package com.ds.common.util;
 import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.HexUtil;
-import cn.hutool.crypto.CryptoException;
 import cn.hutool.crypto.asymmetric.KeyType;
 import cn.hutool.crypto.asymmetric.RSA;
 import cn.hutool.json.JSONUtil;
+import org.springframework.util.StringUtils;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -22,9 +22,6 @@ import java.util.Date;
 public class SignUtil {
 
 
-
-
-
     /**
      * @return : java.lang.String
      * @author : sunpx
@@ -36,7 +33,7 @@ public class SignUtil {
     public static String getToken(String data) {
         RSA rsa = new RSA(TokenKey.getPrivateKey(), TokenKey.getPublicKey());
         String now = DateUtil.now();
-        String sign = rsa.encryptStr(data+"#"+now, KeyType.PublicKey);
+        String sign = rsa.encryptStr(data + "#" + now, KeyType.PublicKey);
         return sign;
     }
 
@@ -49,23 +46,30 @@ public class SignUtil {
      * @params : data
      */
     public static boolean isToken(String data) {
+
         try {
-            RSA rsa = new RSA(TokenKey.getPrivateKey(), TokenKey.getPublicKey());
-            byte[] aByte = HexUtil.decodeHex(data);
-            byte[] decrypt = rsa.decrypt(aByte, KeyType.PrivateKey);
+            UserInfo userInfo = new UserInfo();
+            //如果没登录userInfo就不会有值
+            if (!StringUtils.isEmpty(userInfo.getName())) {
+                RSA rsa = new RSA(TokenKey.getPrivateKey(), TokenKey.getPublicKey());
+                byte[] aByte = HexUtil.decodeHex(data);
+                byte[] decrypt = rsa.decrypt(aByte, KeyType.PrivateKey);
 
-            String s = new String(decrypt);
+                String s = new String(decrypt);
 
-            Date date1 = DateUtil.parse(DateUtil.now());
-            int i = s.lastIndexOf("#");
+                Date date1 = DateUtil.parse(DateUtil.now());
+                int i = s.lastIndexOf("#");
 
 
-            Date date2 = DateUtil.parse(s.substring(i+1));
-            if (DateUtil.between(date1, date2, DateUnit.MINUTE) <= 60) {
-                return true;
+                Date date2 = DateUtil.parse(s.substring(i + 1));
+                UserInfo userInfo1 = JSONUtil.toBean(s.substring(0, i), UserInfo.class);
+                //如果解密出来的数据与userInfo对不上表示签名是伪造的
+                if (DateUtil.between(date1, date2, DateUnit.MINUTE) <= 60 && userInfo.getId() == userInfo1.getId()) {
+                    return true;
+                }
             }
             return false;
-        } catch (CryptoException e) {
+        } catch (Exception e) {
             return false;
         }
     }
@@ -98,7 +102,6 @@ public class SignUtil {
         cookie.setMaxAge(60 * 60);
         response.addCookie(cookie);
     }
-
 
 
 }

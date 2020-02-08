@@ -11,22 +11,16 @@ import com.ds.model.InqUser;
  */
 
 public class UserInfo {
-
-        public UserInfo(){
-            String userInfo = (String)ServletUtil.getRequest().getSession().getAttribute("userInfo");
-            InqUser inqUser = JSONUtil.toBean(userInfo, InqUser.class);
-            id=inqUser.getId();
-            name=inqUser.getUserName();
-            sex=inqUser.getUserSex();
-            type=inqUser.getUserType();
-        }
-
-
-    public UserInfo(Integer id, String name, Integer sex, Integer type) {
-        this.id = id;
-        this.name = name;
-        this.sex = sex;
-        this.type = type;
+    /**
+     * 将用户数据初始化进对象
+     */
+    public UserInfo() {
+        String userInfo = (String) ServletUtil.getRequest().getSession().getAttribute("userInfo");
+        InqUser inqUser = JSONUtil.toBean(userInfo, InqUser.class);
+        id = inqUser.getId();
+        name = inqUser.getUserName();
+        sex = inqUser.getUserSex();
+        type = inqUser.getUserType();
     }
 
     private Integer id;
