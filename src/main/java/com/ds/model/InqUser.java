@@ -2,6 +2,8 @@ package com.ds.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 
 /**
@@ -36,6 +38,7 @@ public class InqUser implements Serializable {
     /**
      * 加密盐
      */
+    @JsonIgnore
     private String userSalt;
 
     /**
