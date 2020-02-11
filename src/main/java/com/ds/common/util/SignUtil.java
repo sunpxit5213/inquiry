@@ -86,6 +86,7 @@ public class SignUtil {
         Cookie cookie = new Cookie(cookieName, SignUtil.getToken(JSONUtil.parse(new UserInfo()).toJSONString(1)));
         cookie.setPath("/");
         cookie.setMaxAge(60 * 60);
+        cookie.setDomain("127.0.0.1");
         response.addCookie(cookie);
     }
 

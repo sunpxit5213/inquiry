@@ -18,4 +18,6 @@ public class IquUserVo extends InqUser {
    private InqDoctorsVo doc;
 
 
+
+
 }

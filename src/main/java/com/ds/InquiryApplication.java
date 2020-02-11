@@ -12,6 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 @MapperScan(basePackages = "com.ds.dao")
+//@ServletComponentScan
 public class InquiryApplication {
 
     public static void main(String[] args) {
