@@ -11,7 +11,7 @@ import org.springframework.stereotype.Controller;
  * </p>
  *
  * @author dps
- * @since 2020-02-07
+ * @since 2020-02-13
  */
 @Controller
 @RequestMapping("/inqDict")

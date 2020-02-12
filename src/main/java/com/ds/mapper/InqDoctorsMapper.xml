@@ -11,6 +11,8 @@
         <result column="doc_resume" property="docResume" />
         <result column="doc_practise" property="docPractise" />
         <result column="doc_status" property="docStatus" />
+        <result column="doc_name" property="docName" />
+        <result column="doc_age" property="docAge" />
     </resultMap>
 
 </mapper>

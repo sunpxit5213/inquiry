@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * </p>
  *
  * @author dps
- * @since 2020-02-07
+ * @since 2020-02-13
  */
 public interface InqDepartmentMapper extends BaseMapper<InqDepartment> {
 

@@ -12,7 +12,7 @@ import com.ds.model.vo.IquUserVo;
  * </p>
  *
  * @author dps
- * @since 2020-02-07
+ * @since 2020-02-13
  */
 public interface InqUserMapper extends BaseMapper<InqUser> {
 
@@ -20,7 +20,4 @@ public interface InqUserMapper extends BaseMapper<InqUser> {
 
 
     InqDoctors getByDoc();
-
-
-
 }

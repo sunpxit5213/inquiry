@@ -10,7 +10,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author dps
- * @since 2020-02-07
+ * @since 2020-02-13
  */
 public class InqDepartment implements Serializable {
 

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * </p>
  *
  * @author dps
- * @since 2020-02-07
+ * @since 2020-02-13
  */
 @Service
 public class InqDepartmentServiceImpl extends ServiceImpl<InqDepartmentMapper, InqDepartment> implements InqDepartmentService {

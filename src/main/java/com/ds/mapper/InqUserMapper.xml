@@ -4,16 +4,18 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.ds.model.vo.IquUserVo">
-        <id column="user_id" property="id"/>
-        <result column="user_name" property="userName"/>
-        <result column="password" property="password"/>
-        <result column="user_salt" property="userSalt"/>
-        <result column="user_sex" property="userSex"/>
-        <result column="img_url" property="imgUrl"/>
-        <result column="user_type" property="userType"/>
+        <id column="id" property="id" />
+        <result column="user_name" property="userName" />
+        <result column="password" property="password" />
+        <result column="user_salt" property="userSalt" />
+        <result column="user_sex" property="userSex" />
+        <result column="img_url" property="imgUrl" />
+        <result column="user_type" property="userType" />
+        <result column="user_date" property="userDate" />
+        <result column="student" property="student" />
+        <result column="number" property="number" />
         <association property="doc" column="user_id" select="getByDoc"></association>
     </resultMap>
-
 
     <sql id="send">
         id as user_id,
@@ -22,7 +24,9 @@
         user_salt ,
         user_sex ,
         img_url ,
-        user_type
+        user_type,
+        number,
+        student
     </sql>
 
     <select id="getByIds" resultMap="BaseResultMap">
@@ -39,7 +43,6 @@
             and doc.doc_user=#{user_id}	) AS al
             LEFT JOIN inq_dict AS dict ON  dict.id=al.doc_status
     </select>
-
 
 
 

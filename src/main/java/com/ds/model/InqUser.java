@@ -2,8 +2,7 @@ package com.ds.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
+import java.time.LocalDateTime;
 import java.io.Serializable;
 
 /**
@@ -13,7 +12,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author dps
- * @since 2020-02-07
+ * @since 2020-02-13
  */
 public class InqUser implements Serializable {
 
@@ -38,7 +37,6 @@ public class InqUser implements Serializable {
     /**
      * 加密盐
      */
-    @JsonIgnore
     private String userSalt;
 
     /**
@@ -55,6 +53,21 @@ public class InqUser implements Serializable {
      * 用户类型1.普通用户，2医生，3管理员
      */
     private Integer userType;
+
+    /**
+     * 注册时间
+     */
+    private LocalDateTime userDate;
+
+    /**
+     * 状态1在线2,未登陆
+     */
+    private Integer student;
+
+    /**
+     * 手机号
+     */
+    private String number;
 
 
     public Integer getId() {
@@ -113,6 +126,30 @@ public class InqUser implements Serializable {
         this.userType = userType;
     }
 
+    public LocalDateTime getUserDate() {
+        return userDate;
+    }
+
+    public void setUserDate(LocalDateTime userDate) {
+        this.userDate = userDate;
+    }
+
+    public Integer getStudent() {
+        return student;
+    }
+
+    public void setStudent(Integer student) {
+        this.student = student;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
     @Override
     public String toString() {
         return "InqUser{" +
@@ -123,6 +160,9 @@ public class InqUser implements Serializable {
         ", userSex=" + userSex +
         ", imgUrl=" + imgUrl +
         ", userType=" + userType +
+        ", userDate=" + userDate +
+        ", student=" + student +
+        ", number=" + number +
         "}";
     }
 }

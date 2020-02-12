@@ -2,7 +2,6 @@ package com.ds.test.common;
 
 import com.ds.dao.InqUserMapper;
 import com.ds.service.InqUserService;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,8 +22,5 @@ public class RunTEst {
     @Autowired
     InqUserMapper inqUserMapper;
 
-    @Test
-    public void sqlTest1() {
-        System.out.println(inqUserMapper.getByIds(3));
-    }
+
 }

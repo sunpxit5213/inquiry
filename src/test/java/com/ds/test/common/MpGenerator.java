@@ -51,9 +51,9 @@ public class MpGenerator {
         DataSourceConfig dsc = new DataSourceConfig();
         dsc.setDbType(DbType.MYSQL);
         dsc.setDriverName("com.mysql.jdbc.Driver");
-        dsc.setUsername("admin_sunpx");
-        dsc.setPassword("admin_root");
-        dsc.setUrl("jdbc:mysql://106.12.207.251:3567/inquiry?useUnicodle=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC");
+        dsc.setUsername("root");
+        dsc.setPassword("root");
+        dsc.setUrl("jdbc:mysql://127.0.0.1:3306/inquiry?useUnicode=true&characterEncoding=utf-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
         mpg.setDataSource(dsc);
 
         // 策略配置

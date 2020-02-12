@@ -7,15 +7,15 @@ import org.springframework.stereotype.Controller;
 
 /**
  * <p>
- * 科室表  前端控制器
+ * 交流表 前端控制器
  * </p>
  *
  * @author dps
  * @since 2020-02-13
  */
 @Controller
-@RequestMapping("/inqDepartment")
-public class InqDepartmentController {
+@RequestMapping("/inqMessage")
+public class InqMessageController {
 
 }
 

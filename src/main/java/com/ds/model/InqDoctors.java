@@ -10,7 +10,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author dps
- * @since 2020-02-07
+ * @since 2020-02-13
  */
 public class InqDoctors implements Serializable {
 
@@ -51,6 +51,16 @@ public class InqDoctors implements Serializable {
      * 状态(1,空闲,2休息,3,就诊)
      */
     private Integer docStatus;
+
+    /**
+     * 医生姓名
+     */
+    private String docName;
+
+    /**
+     * 年龄
+     */
+    private Integer docAge;
 
 
     public Integer getId() {
@@ -109,6 +119,22 @@ public class InqDoctors implements Serializable {
         this.docStatus = docStatus;
     }
 
+    public String getDocName() {
+        return docName;
+    }
+
+    public void setDocName(String docName) {
+        this.docName = docName;
+    }
+
+    public Integer getDocAge() {
+        return docAge;
+    }
+
+    public void setDocAge(Integer docAge) {
+        this.docAge = docAge;
+    }
+
     @Override
     public String toString() {
         return "InqDoctors{" +
@@ -119,6 +145,8 @@ public class InqDoctors implements Serializable {
         ", docResume=" + docResume +
         ", docPractise=" + docPractise +
         ", docStatus=" + docStatus +
+        ", docName=" + docName +
+        ", docAge=" + docAge +
         "}";
     }
 }
