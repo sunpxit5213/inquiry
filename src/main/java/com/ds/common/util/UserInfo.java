@@ -21,6 +21,7 @@ public class UserInfo {
         name = inqUser.getUserName();
         sex = inqUser.getUserSex();
         type = inqUser.getUserType();
+        url=inqUser.getImgUrl();
     }
 
     private Integer id;
@@ -39,6 +40,18 @@ public class UserInfo {
      */
     private Integer type;
 
+    /**
+     *  图片地址
+     */
+    private String url;
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     public Integer getId() {
         return id;

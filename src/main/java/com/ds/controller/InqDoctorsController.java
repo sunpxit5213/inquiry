@@ -1,9 +1,10 @@
 package com.ds.controller;
 
 
-import org.springframework.web.bind.annotation.RequestMapping;
-
+import com.ds.service.InqDoctorsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * <p>
@@ -16,6 +17,11 @@ import org.springframework.stereotype.Controller;
 @Controller
 @RequestMapping("/inqDoctors")
 public class InqDoctorsController {
+
+    @Autowired
+    InqDoctorsService inqDoctorsService;
+
+
 
 }
 

@@ -1,6 +1,8 @@
 package com.ds.controller;
 
 
+import com.ds.service.InqUserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.stereotype.Controller;
@@ -8,7 +10,7 @@ import org.springframework.stereotype.Controller;
 /**
  * <p>
  * 医生表
- 前端控制器
+ * 前端控制器
  * </p>
  *
  * @author dps
@@ -17,6 +19,9 @@ import org.springframework.stereotype.Controller;
 @Controller
 @RequestMapping("/inqUser")
 public class InqUserController {
+
+    @Autowired
+    private InqUserService inqUserService;
 
 }
 
