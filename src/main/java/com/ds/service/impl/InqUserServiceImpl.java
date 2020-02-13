@@ -6,11 +6,14 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ds.common.util.ResultData;
 import com.ds.common.util.UserInfo;
 import com.ds.dao.InqUserMapper;
+import com.ds.model.InqDoctors;
 import com.ds.model.InqUser;
 import com.ds.model.vo.IquUserVo;
+import com.ds.service.InqDoctorsService;
 import com.ds.service.InqUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * <p>
@@ -26,6 +29,9 @@ public class InqUserServiceImpl extends ServiceImpl<InqUserMapper, InqUser> impl
 
     @Autowired
     InqUserMapper inqUserMapper;
+
+    @Autowired
+    InqDoctorsService inqDoctorsService;
 
 
     @Override
@@ -43,11 +49,29 @@ public class InqUserServiceImpl extends ServiceImpl<InqUserMapper, InqUser> impl
 
     @Override
     public ResultData queryUser() {
+        UserInfo userInfo = new UserInfo();
+        System.out.println(userInfo);
         return new ResultData(getById(new UserInfo().getId()));
     }
 
     @Override
     public ResultData saveImg() {
         return null;
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public ResultData del(Integer id) {
+        QueryWrapper<InqUser> userWrapper= new QueryWrapper<>();
+        QueryWrapper<InqDoctors> docWrapper= new QueryWrapper<>();
+
+        //删除用户的附加角色
+        docWrapper.eq("doc_user",id);
+        inqDoctorsService.remove(docWrapper);
+
+        //删除用户
+        userWrapper.eq("id",id);
+        inqUserMapper.delete(userWrapper);
+        return new ResultData("删除成功");
     }
 }

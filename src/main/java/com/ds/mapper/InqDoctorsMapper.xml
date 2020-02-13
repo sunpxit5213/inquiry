@@ -3,16 +3,41 @@
 <mapper namespace="com.ds.dao.InqDoctorsMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.ds.model.InqDoctors">
-        <id column="id" property="id" />
-        <result column="doc_subject" property="docSubject" />
-        <result column="doc_user" property="docUser" />
-        <result column="doc_education" property="docEducation" />
-        <result column="doc_resume" property="docResume" />
-        <result column="doc_practise" property="docPractise" />
-        <result column="doc_status" property="docStatus" />
-        <result column="doc_name" property="docName" />
-        <result column="doc_age" property="docAge" />
+    <resultMap id="BaseResultMap" type="com.ds.model.vo.InqDoctorsVo">
+        <id column="id" property="id"/>
+        <result column="doc_subject" property="docSubject"/>
+        <result column="doc_user" property="docUser"/>
+        <result column="doc_education" property="docEducation"/>
+        <result column="doc_resume" property="docResume"/>
+        <result column="doc_practise" property="docPractise"/>
+        <result column="doc_status" property="docStatus"/>
+        <result column="doc_name" property="docName"/>
+        <result column="doc_age" property="docAge"/>
+        <result column="dep_name" property="depName"/>
     </resultMap>
+
+
+    <select id="getPage" resultMap="BaseResultMap">
+        SELECT
+        doc.*,
+        dep.dep_name as dep_name
+        FROM
+        inq_doctors AS doc
+        LEFT JOIN inq_department AS dep ON doc.doc_subject = dep.id
+        where 1=1
+        <if test="inq.docSubject !=null and inq.docSubject!=''">
+            and doc_subject=#{inq.docSubject}
+        </if>
+
+        <if test="inq.docName !=null and inq.docName!=''">
+            and doc_name=#{inq.docName}
+        </if>
+        <if test="inq.docStatus !=null and inq.docStatus!=''">
+            and doc_status=#{inq.docStatus}
+        </if>
+        <if test="inq.id !=null and inq.id!=''">
+            and id=#{inq.id}
+        </if>
+    </select>
 
 </mapper>

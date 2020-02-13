@@ -54,4 +54,13 @@ public interface InqUserService extends IService<InqUser> {
      */
     ResultData saveImg();
 
+    /**
+     * @return : com.ds.common.util.ResultData
+     * @author : sunpx
+     * @desc : 删除用户
+     * @date : 2020/02/13 19:59:18
+     * @params : id
+     */
+    ResultData del(Integer id);
+
 }

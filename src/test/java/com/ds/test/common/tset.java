@@ -6,6 +6,7 @@ import cn.hutool.core.io.file.FileWriter;
 import cn.hutool.core.util.HexUtil;
 import cn.hutool.crypto.asymmetric.KeyType;
 import cn.hutool.crypto.asymmetric.RSA;
+import com.ds.common.util.OSSUtil;
 import com.ds.common.util.TokenKey;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -85,7 +86,21 @@ public class tset {
         System.out.println(inqUser);*/
         String a="12345#abcdefg";
         int i = a.lastIndexOf("#");
-        System.out.println( a .substring(0,i));
+        System.out.println( a .substring(i));
+
+    }
+
+    @Test
+    public void s3(){
+        OSSUtil ossUtil = new OSSUtil();
+//        int i = RandomUtil.randomInt(0, 20);
+//
+//            System.out.println(i);
+
+
+        String originalFilename="https://inq2019.oss-cn-shenzhen.aliyuncs.com/userIng/admin685b903dba314bab9b92ad8164303755.jpg";
+        ossUtil.delLoad(originalFilename);
+
 
     }
 }

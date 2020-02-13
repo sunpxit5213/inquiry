@@ -20,4 +20,5 @@ public class IquUserVo extends InqUser {
 
 
 
+
 }
