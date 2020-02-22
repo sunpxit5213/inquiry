@@ -55,7 +55,7 @@ public class InqUserController {
      * @params : null
      */
     @GetMapping("getById")
-    public ResultData byId(Integer id, Integer stu) {
+    public ResultData byId(@RequestParam Integer id,@RequestParam Integer stu) {
         if (stu == 2) {
             return inqUserService.inquire(id);
         } else {

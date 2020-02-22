@@ -3,10 +3,20 @@
 <mapper namespace="com.ds.dao.InqDepartmentMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.ds.model.InqDepartment">
+    <resultMap id="BaseResultMap" type="com.ds.model.vo.InqDepartmentVo">
         <id column="id" property="id" />
         <result column="dep_name" property="depName" />
         <result column="dep_type" property="depType" />
+        <result column="typeName" property="typeName"/>
     </resultMap>
+
+    <select id="ipPge" resultMap="BaseResultMap">
+        SELECT
+            dep.*,
+            dict.dict_value AS typeName
+        FROM
+            inq_department AS dep
+            LEFT JOIN inq_dict AS dict ON dep.dep_type = dict.id
+    </select>
 
 </mapper>

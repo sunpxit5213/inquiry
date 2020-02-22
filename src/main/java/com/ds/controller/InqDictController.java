@@ -4,11 +4,10 @@ package com.ds.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.ds.common.util.ResultData;
 import com.ds.model.InqDict;
+import com.ds.model.vo.InqDictVo;
 import com.ds.service.InqDictService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
@@ -33,6 +32,16 @@ public class InqDictController {
     public ResultData getByType(String type){
         QueryWrapper<InqDict> queryWrapper=new QueryWrapper<>();
         return new ResultData(inqDictService.list(queryWrapper));
+    }
+
+
+
+
+    @PostMapping("queryPage")
+    public ResultData queryPage(@RequestBody InqDictVo inqDictVo){
+
+        QueryWrapper<InqDict> queryWrapper=new QueryWrapper<>();
+        return new ResultData(inqDictService.page(inqDictVo.getPage(),queryWrapper));
     }
 }
 

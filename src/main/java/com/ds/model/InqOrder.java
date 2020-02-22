@@ -35,6 +35,9 @@ public class InqOrder implements Serializable {
      */
     private LocalDateTime createDate;
 
+    /**
+     * 标题
+     */
     private String ordTitle;
 
 

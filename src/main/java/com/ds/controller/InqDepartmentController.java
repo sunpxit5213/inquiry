@@ -1,9 +1,14 @@
 package com.ds.controller;
 
 
+import com.ds.common.util.ResultData;
+import com.ds.model.vo.InqDepartmentVo;
+import com.ds.service.InqDepartmentService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <p>
@@ -13,9 +18,17 @@ import org.springframework.stereotype.Controller;
  * @author dps
  * @since 2020-02-13
  */
-@Controller
+@RestController
 @RequestMapping("/inqDepartment")
 public class InqDepartmentController {
+
+    @Autowired
+    InqDepartmentService inqDepartmentService;
+
+    @PostMapping("queryPage")
+    public ResultData queryPage(@RequestBody InqDepartmentVo inqDepartmentVo){
+            return inqDepartmentService.quPage(inqDepartmentVo);
+    }
 
 }
 

@@ -1,12 +1,11 @@
 package com.ds.controller;
 
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.ds.common.util.ResultData;
-import com.ds.model.InqDict;
-import com.ds.service.InqDictService;
+import com.ds.model.vo.InqReservationVo;
+import com.ds.service.InqReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,7 +21,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/inqReservation")
 public class InqReservationController {
 
+    @Autowired
+    InqReservationService inqReservationService;
 
+    public ResultData query(@RequestBody InqReservationVo inqReservationVo){
+
+    return inqReservationService.queryPage(inqReservationVo);
+    }
 
 }
 

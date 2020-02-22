@@ -37,6 +37,9 @@ public class InqUserServiceImpl extends ServiceImpl<InqUserMapper, InqUser> impl
     @Override
     public ResultData quePage(IquUserVo iquUserVo) {
         QueryWrapper<InqUser> queryWrapper = new QueryWrapper<>();
+        if (iquUserVo.getUserType()!=null){
+            queryWrapper.eq("user_type",iquUserVo.getUserType());
+        }
         Page isPage = iquUserVo.getPage();
         return new ResultData(page(isPage, queryWrapper));
     }
@@ -50,7 +53,6 @@ public class InqUserServiceImpl extends ServiceImpl<InqUserMapper, InqUser> impl
     @Override
     public ResultData queryUser() {
         UserInfo userInfo = new UserInfo();
-        System.out.println(userInfo);
         return new ResultData(getById(new UserInfo().getId()));
     }
 

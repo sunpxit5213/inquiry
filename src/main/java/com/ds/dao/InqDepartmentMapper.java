@@ -1,7 +1,10 @@
 package com.ds.dao;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ds.model.InqDepartment;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.ds.model.vo.InqDepartmentVo;
 
 /**
  * <p>
@@ -12,5 +15,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @since 2020-02-13
  */
 public interface InqDepartmentMapper extends BaseMapper<InqDepartment> {
+
+    IPage<InqDepartmentVo> ipPge(Page page);
 
 }

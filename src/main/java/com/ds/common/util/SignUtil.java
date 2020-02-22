@@ -68,9 +68,9 @@ public class SignUtil {
                     return true;
                 }
             }
-            return /*false*/ true;
+            return false;
         } catch (Exception e) {
-            return /*false*/ true;
+            return  true;
         }
     }
 

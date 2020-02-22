@@ -1,7 +1,9 @@
 package com.ds.service;
 
+import com.ds.common.util.ResultData;
 import com.ds.model.InqDepartment;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.ds.model.vo.InqDepartmentVo;
 
 /**
  * <p>
@@ -12,5 +14,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2020-02-13
  */
 public interface InqDepartmentService extends IService<InqDepartment> {
-
+    ResultData quPage(InqDepartmentVo vo);
 }

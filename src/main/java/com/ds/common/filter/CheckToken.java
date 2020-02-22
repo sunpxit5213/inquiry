@@ -47,7 +47,6 @@ public class CheckToken implements Filter {
 
             //判断是否传递签名
             if (token != null) {
-                log.info("auth success");
 
 
                 //认证
@@ -58,7 +57,6 @@ public class CheckToken implements Filter {
                 } else {
                     erreAll(servletResponse);
                 }
-
             } else {
                 erreAll(servletResponse);
             }

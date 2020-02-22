@@ -8,7 +8,6 @@ package com.ds.common.enums;
  */
 
 public enum  InqEXEnu {
-
     USER_LAPSE(1500,"未登录");
 
     private Integer code;

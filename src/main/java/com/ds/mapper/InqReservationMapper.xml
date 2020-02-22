@@ -3,16 +3,45 @@
 <mapper namespace="com.ds.dao.InqReservationMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.ds.model.InqReservation">
-        <id column="id" property="id" />
-        <result column="user_id" property="userId" />
-        <result column="doc_id" property="docId" />
-        <result column="start_date" property="startDate" />
-        <result column="stop_date" property="stopDate" />
-        <result column="res_title" property="resTitle" />
-        <result column="res_contact" property="resContact" />
-        <result column="id_card" property="idCard" />
-        <result column="res_status" property="resStatus" />
+    <resultMap id="BaseResultMap" type="com.ds.model.vo.InqReservationVo">
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="doc_id" property="docId"/>
+        <result column="start_date" property="startDate"/>
+        <result column="stop_date" property="stopDate"/>
+        <result column="res_title" property="resTitle"/>
+        <result column="res_contact" property="resContact"/>
+        <result column="id_card" property="idCard"/>
+        <result column="res_status" property="resStatus"/>
     </resultMap>
+
+    <select id="queryPage" resultMap="BaseResultMap">
+        SELECT
+	reaAll.*,
+	doc.doc_name
+FROM
+	(
+	SELECT
+		res.*,
+		u.user_name
+	FROM
+	inq_reservation AS res
+	LEFT JOIN inq_user AS u ON res.user_id = u.id) as reaAll LEFT JOIN inq_doctors as doc
+	on reaAll.id=doc.id
+    </select>
+    <select id="getBy" resultMap="BaseResultMap">
+        SELECT
+	reaAll.*,
+	doc.doc_name
+    FROM
+	(
+	SELECT
+		res.*,
+		u.user_name
+	FROM
+	inq_reservation AS res
+	LEFT JOIN inq_user AS u ON  #{id} = u.id) as reaAll LEFT JOIN inq_doctors as doc
+	on reaAll.id=doc.id
+    </select>
 
 </mapper>

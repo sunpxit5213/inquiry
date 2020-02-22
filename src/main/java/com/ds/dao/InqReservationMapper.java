@@ -1,7 +1,11 @@
 package com.ds.dao;
 
-import com.ds.model.InqReservation;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.ds.model.InqReservation;
+import com.ds.model.vo.InqReservationVo;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * <p>
@@ -13,4 +17,9 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface InqReservationMapper extends BaseMapper<InqReservation> {
 
+    IPage<InqReservationVo> queryPage(Page page, InqReservation inqReservation);
+
+
+
+    InqReservationVo getBy(@Param("id") Integer id);
 }
