@@ -44,6 +44,15 @@ public interface InqReservationService extends IService<InqReservation> {
     */
     ResultData getBy(Integer id);
 
+    /**
+    * @author  : sunpx
+    * @desc    : 挂号数量
+    * @date    : 2020/03/01 14:56:43
+    * @params  :
+    * @return  : java.lang.Integer
+    */
+    Integer quantity(Integer b);
+
 
 
 

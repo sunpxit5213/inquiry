@@ -1,5 +1,6 @@
 package com.ds.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ds.common.util.ResultData;
 import com.ds.dao.InqReservationMapper;
@@ -38,5 +39,16 @@ public class InqReservationServiceImpl extends ServiceImpl<InqReservationMapper,
     @Override
     public ResultData getBy(Integer id) {
         return new ResultData(inqReservationMapper.getBy(id));
+    }
+
+
+    @Overrideq
+    public Integer uantity(Integer b) {
+        QueryWrapper<InqReservation> queryWrapper=new QueryWrapper<>();
+        if (b==1){
+            queryWrapper.eq("res_status",b);
+
+        }
+        return  list(queryWrapper).size();
     }
 }

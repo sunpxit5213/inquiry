@@ -24,9 +24,9 @@ public class InqReservationController {
     @Autowired
     InqReservationService inqReservationService;
 
-    public ResultData query(@RequestBody InqReservationVo inqReservationVo){
 
-    return inqReservationService.queryPage(inqReservationVo);
+    public ResultData query(@RequestBody InqReservationVo inqReservationVo){
+        return inqReservationService.queryPage(inqReservationVo);
     }
 
 }

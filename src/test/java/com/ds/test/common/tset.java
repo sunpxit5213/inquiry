@@ -103,4 +103,12 @@ public class tset {
 
 
     }
+
+    @Test
+    public void t1(){
+
+
+        System.out.println(5%100);
+
+    }
 }

@@ -28,7 +28,7 @@ import java.util.Arrays;
 @Component
 @WebFilter(value = "/*")
 public class CheckToken implements Filter {
-    String[] path = {"/login/main", "/login/save","/inqUser/sss"};
+    String[] path = {"/login/main", "/login/save","/inqUser/sss","/main/mainJob"};
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
